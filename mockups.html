@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prototipos - Caça-Palavras</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Inter, "Segoe UI", sans-serif;
+        background: linear-gradient(180deg, #0b1320, #11253d);
+        color: #edf4ff;
+      }
+
+      .mockup-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 32px 16px 64px;
+      }
+
+      .agent-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .agent-card {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 18px;
+        padding: 16px;
+      }
+
+      .agent-card h3 {
+        margin-bottom: 6px;
+        font-size: 1rem;
+      }
+
+      .agent-card p {
+        color: #a8bbd6;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin: 20px 0 24px;
+      }
+
+      .tab {
+        background: rgba(255,255,255,0.04);
+        color: #edf4ff;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 999px;
+        padding: 10px 16px;
+        font-weight: 700;
+      }
+
+      .tab.active {
+        background: linear-gradient(135deg, #76e4c7, #6d8eff);
+        color: #07111f;
+      }
+
+      .prototype {
+        display: none;
+        background: rgba(18,31,50,0.8);
+        border-radius: 28px;
+        padding: 20px;
+        border: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .prototype.active {
+        display: block;
+      }
+
+      .prototype-shell {
+        display: grid;
+        grid-template-columns: 0.9fr 1.5fr 0.9fr;
+        gap: 20px;
+      }
+
+      .mock-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px;
+      }
+
+      .badge {
+        display: inline-flex;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .arcade .badge { background: rgba(118, 228, 199, 0.12); color: #76e4c7; }
+      .soft .badge { background: rgba(248, 213, 99, 0.12); color: #f8d563; }
+      .minimal .badge { background: rgba(151, 169, 255, 0.12); color: #aab8ff; }
+
+      .mock-card {
+        border-radius: 20px;
+        padding: 16px;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .mock-row {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 8px;
+        margin: 8px 0 12px;
+      }
+
+      .mock-cell {
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+        min-height: 46px;
+        font-weight: 800;
+      }
+
+      .mock-cell.green { background: #53d88a; color: #072915; }
+      .mock-cell.yellow { background: #f4d35e; color: #382c00; }
+      .mock-cell.gray { background: #39495d; color: #edf4ff; }
+      .mock-cell.empty { border: 1px solid rgba(255,255,255,0.12); }
+
+      .button-demo {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        border-radius: 12px;
+        width: 100%;
+        font-weight: 800;
+      }
+
+      .primary-demo { background: linear-gradient(135deg, #76e4c7, #6d8eff); color: #07111f; }
+      .soft-demo { background: linear-gradient(135deg, #ffe2c7, #ffb5d2); color: #2a1831; }
+      .minimal-demo { background: #eaf1ff; color: #1c2a3d; }
+
+      @media (max-width: 820px) {
+        .prototype-shell,
+        .agent-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mockup-wrap">
+      <header class="mock-header">
+        <div>
+          <p class="eyebrow">Painel de agentes</p>
+          <h1>Protótipos de interface</h1>
+        </div>
+      </header>
+
+      <div class="agent-row">
+        <article class="agent-card">
+          <h3>UX design</h3>
+          <p>Foco em clareza, ritmo de decisão e fluidez de jogo em mobile.</p>
+        </article>
+        <article class="agent-card">
+          <h3>Acessibilidade web</h3>
+          <p>Contraste, estrutura semântica, teclado e leitura clara.</p>
+        </article>
+        <article class="agent-card">
+          <h3>Design visual</h3>
+          <p>Identidade, feedback visual e temas alinhados ao público jovem.</p>
+        </article>
+      </div>
+
+      <div class="tabs" aria-label="Seleção de protótipo">
+        <button class="tab active" type="button" data-target="arcade">Neon Arcade</button>
+        <button class="tab" type="button" data-target="soft">Pastel Daily</button>
+        <button class="tab" type="button" data-target="minimal">Minimal Focus</button>
+      </div>
+
+      <section class="prototype active arcade" id="arcade">
+        <div class="prototype-shell">
+          <div class="mock-card">
+            <span class="badge">Tema</span>
+            <h3>Meme</h3>
+            <p>5 letras</p>
+            <div class="mock-row">
+              <div class="mock-cell empty">A</div>
+              <div class="mock-cell empty">B</div>
+              <div class="mock-cell green">C</div>
+              <div class="mock-cell empty">D</div>
+              <div class="mock-cell empty">E</div>
+            </div>
+            <div class="button-demo primary-demo">Enviar</div>
+          </div>
+
+          <div class="mock-card">
+            <div class="mock-row">
+              <div class="mock-cell gray">P</div>
+              <div class="mock-cell empty">I</div>
+              <div class="mock-cell yellow">X</div>
+              <div class="mock-cell empty">E</div>
+              <div class="mock-cell empty">L</div>
+            </div>
+            <div class="mock-row">
+              <div class="mock-cell green">J</div>
+              <div class="mock-cell empty">O</div>
+              <div class="mock-cell empty">K</div>
+              <div class="mock-cell yellow">E</div>
+              <div class="mock-cell gray">R</div>
+            </div>
+            <div class="mock-row">
+              <div class="mock-cell empty">M</div>
+              <div class="mock-cell empty">E</div>
+              <div class="mock-cell empty">L</div>
+              <div class="mock-cell empty">A</div>
+              <div class="mock-cell empty">R</div>
+            </div>
+          </div>
+
+          <div class="mock-card">
+            <h3>Estatísticas</h3>
+            <p>Streak: 7</p>
+            <p>Vitórias: 18</p>
+            <p>Partidas: 23</p>
+            <div class="button-demo primary-demo">Compartilhar</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="prototype soft" id="soft">
+        <div class="prototype-shell">
+          <div class="mock-card">
+            <span class="badge">Tema</span>
+            <h3>Natureza</h3>
+            <p>5 letras</p>
+            <div class="mock-row">
+              <div class="mock-cell empty">A</div>
+              <div class="mock-cell empty">R</div>
+              <div class="mock-cell empty">V</div>
+              <div class="mock-cell empty">O</div>
+              <div class="mock-cell empty">R</div>
+            </div>
+            <div class="button-demo soft-demo">Enviar</div>
+          </div>
+
+          <div class="mock-card">
+            <div class="mock-row">
+              <div class="mock-cell green">A</div>
+              <div class="mock-cell empty">R</div>
+              <div class="mock-cell empty">V</div>
+              <div class="mock-cell yellow">O</div>
+              <div class="mock-cell gray">R</div>
+            </div>
+            <div class="mock-row">
+              <div class="mock-cell empty">P</div>
+              <div class="mock-cell green">R</div>
+              <div class="mock-cell empty">A</div>
+              <div class="mock-cell empty">I</div>
+              <div class="mock-cell empty">A</div>
+            </div>
+            <div class="mock-row">
+              <div class="mock-cell empty">F</div>
+              <div class="mock-cell empty">L</div>
+              <div class="mock-cell yellow">O</div>
+              <div class="mock-cell empty">R</div>
+              <div class="mock-cell empty">A</div>
+            </div>
+          </div>
+
+          <div class="mock-card">
+            <h3>Progresso</h3>
+            <p>3 vitórias seguidas</p>
+            <p>best streak: 9</p>
+            <div class="button-demo soft-demo">Compartilhar</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="prototype minimal" id="minimal">
+        <div class="prototype-shell">
+          <div class="mock-card">
+            <span class="badge">Tema</span>
+            <h3>Tecnologia</h3>
+            <p>5 letras</p>
+            <div class="mock-row">
+              <div class="mock-cell empty">B</div>
+              <div class="mock-cell empty">Y</div>
+              <div class="mock-cell empty">T</div>
+              <div class="mock-cell empty">E</div>
+              <div class="mock-cell empty">?</div>
+            </div>
+            <div class="button-demo minimal-demo">Enviar</div>
+          </div>
+
+          <div class="mock-card">
+            <div class="mock-row">
+              <div class="mock-cell green">B</div>
+              <div class="mock-cell empty">Y</div>
+              <div class="mock-cell yellow">T</div>
+              <div class="mock-cell empty">E</div>
+              <div class="mock-cell gray">S</div>
+            </div>
+            <div class="mock-row">
+              <div class="mock-cell green">B</div>
+              <div class="mock-cell green">Y</div>
+              <div class="mock-cell green">T</div>
+              <div class="mock-cell green">E</div>
+              <div class="mock-cell empty">S</div>
+            </div>
+          </div>
+
+          <div class="mock-card">
+            <h3>Resumo</h3>
+            <p>Acerto: 62%</p>
+            <p>Última palavra: BYTE</p>
+            <div class="button-demo minimal-demo">Compartilhar</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const tabs = document.querySelectorAll('.tab');
+      const prototypes = document.querySelectorAll('.prototype');
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const target = tab.dataset.target;
+          tabs.forEach((button) => button.classList.toggle('active', button === tab));
+          prototypes.forEach((section) => section.classList.toggle('active', section.id === target));
+        });
+      });
+    </script>
+  </body>
+</html>

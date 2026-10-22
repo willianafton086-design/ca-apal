@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Caça-Palavras</title>
+    <meta
+      name="description"
+      content="Jogo casual diário de adivinhação de palavras para mobile e desktop."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <main class="game-layout" aria-live="polite">
+        <h1 class="game-title">Caça-Palavras</h1>
+        <section class="panel board-panel" aria-label="Tabuleiro do jogo">
+          <div class="board-header">
+            <div class="theme-chip" aria-label="Tema do dia">
+              <span class="eyebrow">Tema</span>
+              <h2 id="theme-title">Meme</h2>
+            </div>
+            <div class="board-meta">
+              <span id="letter-count">5 letras</span>
+              <span class="dot" aria-hidden="true">•</span>
+              <span id="tries-left">6 tentativas</span>
+            </div>
+          </div>
+          <div id="board" class="board" aria-live="polite"></div>
+        </section>
+
+        <section class="panel controls-panel" aria-label="Entrada do jogador">
+          <p id="tip-text" class="helper-text">
+            Descubra a palavra em até 6 chances.
+          </p>
+
+          <form id="guess-form" class="guess-form" novalidate>
+            <label class="sr-only" for="guess-input">Digite sua tentativa</label>
+            <input
+              id="guess-input"
+              name="guess-input"
+              type="text"
+              maxlength="5"
+              inputmode="text"
+              autocapitalize="characters"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="Digite a palavra"
+            />
+            <button id="submit-btn" type="submit">Enviar</button>
+          </form>
+
+          <div id="status" class="status" role="status" aria-live="polite"></div>
+
+          <div class="utility-row">
+            <button id="share-btn" class="secondary-button" type="button">Compartilhar</button>
+            <button id="restart-btn" class="secondary-button" type="button">Reiniciar</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="result-modal" class="modal hidden" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="result-title">
+        <p class="eyebrow">Resultado</p>
+        <h3 id="result-title">Você venceu!</h3>
+        <p id="result-text">A palavra era ...</p>
+
+        <div id="stats-summary">
+          <div class="stat-card">
+            <span class="stat-label">Streak</span>
+            <strong id="current-streak">0</strong>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Melhor</span>
+            <strong id="best-streak">0</strong>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Vitórias</span>
+            <strong id="wins">0</strong>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Partidas</span>
+            <strong id="games">0</strong>
+          </div>
+        </div>
+
+        <div class="summary-box">
+          <p>Última palavra</p>
+          <strong id="last-word">—</strong>
+          <small id="accuracy">0% de acerto</small>
+        </div>
+
+        <div class="modal-actions">
+          <button id="close-result" class="primary-button" type="button">Continuar</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
